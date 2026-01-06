@@ -64,11 +64,6 @@ app.post('/api/chat', async (req, res) => {
     const { message } = req.body || {};
     const apiKey = process.env.GEMINI_API_KEY;
 
-    if (!apiKey) {
-        console.error('Missing GEMINI_API_KEY');
-        return res.status(500).json({ error: 'Server misconfiguration' });
-    }
-
     if (!message || typeof message !== 'string' || !message.trim()) {
         return res.status(400).json({ error: 'Message is required' });
     }
@@ -86,7 +81,7 @@ app.post('/api/chat', async (req, res) => {
 
         let reply = null;
         try {
-            const genAI = new GoogleGenerativeAI(apiKey);
+            const genAI = apiKey ? new GoogleGenerativeAI(apiKey) : new GoogleGenerativeAI();
             const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
             const result = await model.generateContent(prompt);
             const response = await result.response;
