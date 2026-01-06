@@ -54,9 +54,70 @@ export default async function handler(req, res) {
 
         const prompt = `${systemPrompt}\n\nUSER QUESTION: ${safeMessage}`;
 
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const reply = response.text();
+        // Attempt official client first
+        let reply = null;
+        try {
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            reply = response.text();
+        } catch (clientErr) {
+            console.warn('Generative AI client failed, trying REST fallback:', clientErr && clientErr.message);
+        }
+
+        // REST fallback (try a couple common endpoints)
+        if (!reply) {
+            const restReply = await (async () => {
+                const endpoints = [
+                    // v1 endpoint (may vary by project/region)
+                    `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateText?key=${apiKey}`,
+                    // v1beta2 fallback
+                    `https://generativelanguage.googleapis.com/v1beta2/models/gemini-1.5-flash:generateText?key=${apiKey}`,
+                ];
+
+                for (const url of endpoints) {
+                    try {
+                        const body = {
+                            prompt: { text: prompt },
+                            temperature: 0.2,
+                            maxOutputTokens: 512,
+                        };
+
+                        const resp = await fetch(url, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(body),
+                        });
+
+                        if (!resp.ok) {
+                            const txt = await resp.text();
+                            console.warn('REST endpoint error', url, resp.status, txt);
+                            continue;
+                        }
+
+                        const data = await resp.json();
+                        // Try common response shapes
+                        if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                            return data.candidates[0].content[0].text || data.candidates[0].content[0].pureText || null;
+                        }
+                        if (data.output && data.output[0] && data.output[0].content) {
+                            return data.output[0].content.map(c => c.text || '').join('\n') || null;
+                        }
+                        if (data.reply) return data.reply;
+                        // Generic text field
+                        if (data.text) return data.text;
+                    } catch (e) {
+                        console.warn('REST fetch failed for', url, e && e.message);
+                    }
+                }
+
+                return null;
+            })();
+
+            reply = restReply;
+        }
+
+        // If still no reply, throw
+        if (!reply) throw new Error('No reply from Gemini (client+REST)');
 
         // Final safety check on reply
         if (!reply || isForbiddenTopic(reply)) {

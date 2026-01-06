@@ -82,12 +82,49 @@ app.post('/api/chat', async (req, res) => {
     const safeMessage = userMessage.length > 1200 ? userMessage.slice(0, 1200) : userMessage;
 
     try {
-        const genAI = new GoogleGenerativeAI(apiKey);
-        const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+        const prompt = `${systemPrompt}\n\nUSER QUESTION: ${safeMessage}`;
 
-        const result = await model.generateContent(`${systemPrompt}\n\nUSER QUESTION: ${safeMessage}`);
-        const response = await result.response;
-        const reply = response.text();
+        let reply = null;
+        try {
+            const genAI = new GoogleGenerativeAI(apiKey);
+            const model = genAI.getGenerativeModel({ model: 'gemini-1.5-flash' });
+            const result = await model.generateContent(prompt);
+            const response = await result.response;
+            reply = response.text();
+        } catch (clientErr) {
+            console.warn('Generative AI client failed (server), will try REST fallback:', clientErr && clientErr.message);
+        }
+
+        if (!reply) {
+            const endpoints = [
+                `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateText?key=${apiKey}`,
+                `https://generativelanguage.googleapis.com/v1beta2/models/gemini-1.5-flash:generateText?key=${apiKey}`,
+            ];
+
+            for (const url of endpoints) {
+                try {
+                    const body = { prompt: { text: prompt }, temperature: 0.2, maxOutputTokens: 512 };
+                    const resp = await fetch(url, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+                    if (!resp.ok) {
+                        const txt = await resp.text();
+                        console.warn('REST endpoint error', url, resp.status, txt);
+                        continue;
+                    }
+                    const data = await resp.json();
+                    if (data.candidates && data.candidates[0] && data.candidates[0].content) {
+                        reply = data.candidates[0].content[0].text || data.candidates[0].content[0].pureText || null;
+                    }
+                    if (!reply && data.output && data.output[0] && data.output[0].content) {
+                        reply = data.output[0].content.map(c => c.text || '').join('\n') || null;
+                    }
+                    if (!reply && data.reply) reply = data.reply;
+                    if (!reply && data.text) reply = data.text;
+                    if (reply) break;
+                } catch (e) {
+                    console.warn('REST fetch failed for', url, e && e.message);
+                }
+            }
+        }
 
         if (!reply || isForbiddenTopic(reply)) {
             return res.status(200).json({ reply: "I'm designed to help with web development and information related to MD. Elius." });
