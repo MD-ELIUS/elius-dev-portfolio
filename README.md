@@ -25,16 +25,33 @@ This project is a React-based personal portfolio website that features a **Serve
     ```
 
 3.  **Environment Variables**:
-    Create a `.env` file in the root directory and add your OpenAI API Key:
+    Create a `.env` file in the root directory and add your Gemini API key (do NOT commit this file):
     ```env
-    OPENAI_API_KEY=sk-your-openai-api-key-here
+    GEMINI_API_KEY=your_gemini_api_key_here
     ```
 
 4.  **Run Locally**:
-    ```bash
+
+    - Start the local AI server (reads `GEMINI_API_KEY` from `.env`):
+
+    ```powershell
+    npm run server
+    ```
+
+    - In a second terminal start the frontend dev server:
+
+    ```powershell
     npm run dev
     ```
-    *Note: The `/api/chat` endpoint works natively when deployed to Vercel. For local development, it might fall back to keyword matching unless you use `vercel dev`.*
+
+    - Alternatively, set the env var for the current PowerShell session without creating `.env`:
+
+    ```powershell
+    $env:GEMINI_API_KEY = "your_gemini_api_key_here"
+    npm run server
+    ```
+
+    *Note: Do NOT paste API keys into public chats or commit them to the repository. Keep your key private.*
 
 ## 📦 Deployment (Vercel)
 
@@ -45,6 +62,14 @@ This project is a React-based personal portfolio website that features a **Serve
     - Key: `OPENAI_API_KEY`
     - Value: `sk-your-openai-api-key-here`
 5.  Deploy!
+
+Security & Prompt Injection
+ - The server enforces a system prompt and basic prompt-injection protections. User input is sanitized and requests that appear to ask the model to ignore previous instructions or to expose the system prompt will be refused with a safe message.
+ - Do not commit your API key. Use `GEMINI_API_KEY` as the environment variable for deployment.
+
+Vercel-specific notes
+ - When deploying to Vercel, set `GEMINI_API_KEY` in the Environment Variables for the project (Production, Preview, and Development if desired).
+ - The serverless function is in `api/chat.js` and will be used automatically by Vercel.
 
 ## 📂 Project Structure
 
