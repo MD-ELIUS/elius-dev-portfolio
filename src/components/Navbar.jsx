@@ -1,3 +1,4 @@
+/** component: Navbar.jsx documentation added **/
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Moon, Sun } from 'lucide-react';
