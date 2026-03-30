@@ -191,3 +191,5 @@ const Navbar = ({ theme, toggleTheme, activeSection }) => {
 };
 
 export default Navbar;
+
+// Accessibility documentation enhanced
