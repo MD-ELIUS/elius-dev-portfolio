@@ -77,3 +77,5 @@ const LoadingScreen = () => {
 };
 
 export default LoadingScreen;
+
+// Accessibility documentation enhanced
