@@ -1,3 +1,4 @@
+/** component: Skills.jsx documentation added **/
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
