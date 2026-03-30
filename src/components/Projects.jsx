@@ -1,3 +1,4 @@
+/** component: Projects.jsx documentation added **/
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Eye, X, Laptop, Calendar, Share2, ArrowRight, Check } from 'lucide-react';
