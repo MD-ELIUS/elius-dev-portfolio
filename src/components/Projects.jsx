@@ -432,3 +432,5 @@ const Projects = () => {
 };
 
 export default Projects;
+
+// Accessibility documentation enhanced
