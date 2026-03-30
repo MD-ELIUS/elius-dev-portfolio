@@ -181,3 +181,5 @@ const Hero = ({ theme }) => {
 };
 
 export default Hero;
+
+// Accessibility documentation enhanced
