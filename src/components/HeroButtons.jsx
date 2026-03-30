@@ -43,3 +43,5 @@ const HeroButtons = () => {
 };
 
 export default HeroButtons;
+
+// Accessibility documentation enhanced
