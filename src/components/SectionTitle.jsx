@@ -1,3 +1,4 @@
+/** component: SectionTitle.jsx documentation added **/
 import { motion } from 'framer-motion';
 
 const SectionTitle = ({ title, highlight, subtitle }) => {
