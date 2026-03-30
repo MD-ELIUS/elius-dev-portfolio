@@ -1,3 +1,4 @@
+/** component: HeroButtons.jsx documentation added **/
 import { Eye, Send, Download, CheckCircle } from "lucide-react";
 import toast, { Toaster } from 'react-hot-toast';
 
