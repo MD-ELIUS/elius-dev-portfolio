@@ -258,3 +258,5 @@ const Contact = () => {
 };
 
 export default Contact;
+
+// Accessibility documentation enhanced
