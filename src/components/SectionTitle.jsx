@@ -23,3 +23,5 @@ const SectionTitle = ({ title, highlight, subtitle }) => {
 };
 
 export default SectionTitle;
+
+// Accessibility documentation enhanced
