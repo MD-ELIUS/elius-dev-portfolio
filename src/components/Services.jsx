@@ -39,7 +39,7 @@ const ServiceModal = ({ service, onClose }) => {
                 </button>
 
                 <div className="p-8 md:p-12">
-                    <div className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.gradient} p-5 text-white shadow-xl mb-8 flex items-center justify-center`}>
+                    <div className="w-20 h-20 rounded-2xl gradient-premium p-5 text-white shadow-xl mb-8 flex items-center justify-center">
                         {service.icon}
                     </div>
 
@@ -103,7 +103,7 @@ const Services = () => {
             icon: <Layout className="w-8 h-8" />,
             title: "Frontend Development",
             description: "Responsive, user-friendly interfaces using React, Next.js, and Tailwind CSS. Modern UI libraries for smooth experiences.",
-            gradient: "from-purple-500 to-pink-500",
+            gradient: "from-cyan-500 to-indigo-500",
             details: {
                 description: "Focusing on the user journey, I create interfaces that are intuitive and visually stunning. I leverage modern libraries like Framer Motion and GSAP for high-end animations.",
                 features: [
@@ -121,7 +121,7 @@ const Services = () => {
             icon: <Code className="w-8 h-8" />,
             title: "Backend & API Development",
             description: "Robust REST APIs, JWT authentication, and server-side logic with Node.js & Express.",
-            gradient: "from-orange-500 to-red-500",
+            gradient: "from-indigo-500 to-blue-600",
             details: {
                 description: "The engine behind your application. I build secure and high-performance backend systems focusing on security and efficient data handling.",
                 features: [
@@ -139,7 +139,7 @@ const Services = () => {
             icon: <Smartphone className="w-8 h-8" />,
             title: "Responsive & Performance Optimization",
             description: "Optimized websites for speed, accessibility, and SEO. Clean code and fast load times on all screen sizes.",
-            gradient: "from-green-500 to-emerald-500",
+            gradient: "from-sky-500 to-blue-500",
             details: {
                 description: "Speed is crucial for user retention. I optimize your website to load instantly and rank higher on search engines using modern coding standards.",
                 features: [
@@ -157,7 +157,7 @@ const Services = () => {
             icon: <Bug className="w-8 h-8" />,
             title: "Bug Fixing & Code Improvement",
             description: "Improving existing projects by fixing bugs, refactoring code, and enhancing UI/UX while keeping original structure.",
-            gradient: "from-indigo-500 to-blue-500",
+            gradient: "from-blue-500 to-teal-400",
             details: {
                 description: "Have an existing project that needs some love? I can help clean up the codebase, fix those nagging bugs, and add new features without breaking what's already working.",
                 features: [
@@ -175,7 +175,7 @@ const Services = () => {
             icon: <Globe className="w-8 h-8" />,
             title: "Portfolio & Business Websites",
             description: "Professional portfolio and business websites that reflect your brand identity and help you stand out online.",
-            gradient: "from-pink-500 to-rose-500",
+            gradient: "from-teal-400 to-cyan-500",
             details: {
                 description: "Your digital storefront. I design and build websites that tell your story, showcase your work, and convert visitors into clients through effective design.",
                 features: [
@@ -212,16 +212,24 @@ const Services = () => {
                             <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-white/5 dark:from-slate-800/50 dark:to-slate-900/50 backdrop-blur-xl rounded-3xl border border-slate-200 dark:border-white/10 shadow-xl transition-all duration-500 group-hover:shadow-2xl group-hover:shadow-primary/10 group-hover:-translate-y-2"></div>
 
                             <div className="relative p-8 h-full flex flex-col">
-                                <motion.div
-                                    className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.gradient} p-4 text-white shadow-lg mb-6 flex items-center justify-center`}
-                                    whileHover={{
-                                        rotate: 360,
-                                        scale: 1.1,
-                                    }}
-                                    transition={{ duration: 0.8, ease: "easeInOut" }}
-                                >
-                                    {service.icon}
-                                </motion.div>
+                                <div className="mb-6  flex items-center justify-between">
+                                    <motion.div
+                                        className=" w-16 h-16 rounded-2xl gradient-premium p-4 text-white shadow-lg flex items-center justify-center z-10"
+                                        whileHover={{
+                                            rotate: 360,
+                                            scale: 1.1,
+                                        }}
+                                        transition={{ duration: 0.8, ease: "easeInOut" }}
+                                    >
+                                        {service.icon}
+                                    </motion.div>
+
+                                    <div className="-top-2 right-6 opacity-6 pointer-events-none">
+                                        <span className="text-6xl opacity-5 font-bold gradient-premium bg-clip-text text-transparent  select-none">
+                                            0{index + 1}
+                                        </span>
+                                    </div>
+                                </div>
 
                                 <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-4 group-hover:text-primary transition-colors">
                                     {service.title}

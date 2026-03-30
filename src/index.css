@@ -28,29 +28,33 @@
   }
 
   .btn-primary {
-    @apply bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-white border-none hover:shadow-lg hover:shadow-purple-400/30 hover:scale-105;
+    @apply bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-700 text-white border-none hover:shadow-lg hover:shadow-blue-600/30 hover:scale-105;
   }
 
   .btn-secondary {
-    @apply bg-gradient-to-r from-pink-400 via-blue-400 to-purple-400 text-white border-none hover:shadow-lg hover:shadow-pink-400/30 hover:scale-105;
+    @apply bg-gradient-to-r from-sky-500 via-blue-600 to-blue-700 text-white border-none hover:shadow-lg hover:shadow-sky-500/30 hover:scale-105;
   }
 
   .btn-outline {
-    @apply border-2 border-purple-400 text-purple-400 bg-transparent hover:bg-gradient-to-r hover:from-purple-400 hover:via-pink-400 hover:to-blue-400 hover:text-white hover:border-transparent;
+    @apply border-2 border-blue-600 text-blue-600 bg-transparent hover:bg-gradient-to-r hover:from-blue-600 hover:via-cyan-500 hover:to-blue-700 hover:text-white hover:border-transparent;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-700 bg-clip-text text-transparent;
   }
 
   .bg-gradient-primary {
-    @apply bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400;
+    @apply bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-700;
   }
 
   .bg-gradient-secondary {
-    @apply bg-gradient-to-r from-pink-400 via-blue-400 to-purple-400;
+    @apply bg-gradient-to-r from-cyan-500 via-blue-600 to-blue-700;
+  }
+
+  .gradient-premium {
+    @apply bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-700;
   }
 
   /* Enhanced animations */
@@ -75,6 +79,18 @@
     animation: shimmer 3s linear infinite;
   }
 
+  .animate-blob {
+    animation: blob 7s infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-4000 {
+    animation-delay: 4s;
+  }
+
   @keyframes float {
 
     0%,
@@ -84,6 +100,24 @@
 
     50% {
       transform: translateY(-20px);
+    }
+  }
+
+  @keyframes blob {
+    0% {
+      transform: translate(0px, 0px) scale(1);
+    }
+
+    33% {
+      transform: translate(30px, -50px) scale(1.1);
+    }
+
+    66% {
+      transform: translate(-20px, 20px) scale(0.9);
+    }
+
+    100% {
+      transform: translate(0px, 0px) scale(1);
     }
   }
 

@@ -53,7 +53,7 @@ export const chatbotData = {
         },
         {
             question: "What are your qualifications?",
-            "answer": "I completed the Programming Hero Web Development course with full marks on all assignments, am competent in NSDA Web Design and Development Level-3, and have completed the Microsoft Office course from Microsoft on Coursera."
+            "answer": "I completed the Programming Hero Web Development course with full marks on all assignments, I am competent in NSDA Web Design and Development Level-3, and have completed the Microsoft Office course from Microsoft on Coursera."
         },
         {
             question: "Do you contribute to the developer community?",
@@ -61,7 +61,9 @@ export const chatbotData = {
         },
         {
             question: "Where can I see your work?",
-            "answer": "You can check out my portfolio website, LinkedIn profile at https://www.linkedin.com/in/mdelius/, or GitHub repository at https://github.com/MD-ELIUS for examples of my work."
-        }
+            "answer": "You can check out my portfolio website, LinkedIn profile at https://www.linkedin.com/in/mdelius/, or GitHub repository at https://github.com/MD-ELIUS for examples of my work."        },
+        {
+            question: "How can I contact you?",
+            answer: "You can reach me through my Portfolio Website: https://mdelius.dev, LinkedIn: https://www.linkedin.com/in/mdelius/, or GitHub: https://github.com/MD-ELIUS. Feel free to connect with me on any of these platforms!"        }
     ]
 };

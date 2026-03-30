@@ -36,14 +36,16 @@ const Skills = () => {
   };
 
   const getSkillColor = (name) => {
+    // Return unified blue theme text colors or specific semantic colors if necessary
+    // Integrating specific colors to match the unified blue theme where appropriate
     const colorMap = {
       'JavaScript': 'text-yellow-400',
-      'React': 'text-blue-400',
+      'React': 'text-blue-500',
       'Next.js': 'text-gray-800 dark:text-gray-200',
       'HTML5': 'text-orange-500',
-      'CSS3': 'text-blue-500',
+      'CSS3': 'text-blue-600',
       'Tailwind CSS': 'text-cyan-500',
-      'daisyUI': 'text-purple-500',
+      'daisyUI': 'text-indigo-500',
       'Node.js': 'text-green-500',
       'Express.js': 'text-gray-800 dark:text-gray-200',
       'Firebase': 'text-orange-500',
@@ -52,7 +54,7 @@ const Skills = () => {
       'GitHub': 'text-gray-800 dark:text-gray-200',
       'VS Code': 'text-blue-500',
       'Postman': 'text-orange-500',
-      'Figma': 'text-purple-500',
+      'Figma': 'text-indigo-500',
     };
     return colorMap[name] || 'text-primary';
   };
@@ -119,7 +121,7 @@ const Skills = () => {
                 setVisibleCount(6);
               }}
               className={`relative px-6 py-2 rounded-full font-semibold transition-all duration-300 overflow-hidden ${activeFilter === filter
-                ? 'bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 text-white shadow-md shadow-purple-400/30'
+                ? 'gradient-premium text-white shadow-md shadow-blue-500/30'
                 : 'bg-white/60 dark:bg-slate-800/60 backdrop-blur-xl border border-slate-200/50 dark:border-slate-700/50 text-slate-700 dark:text-slate-300 hover:bg-slate-100/80 dark:hover:bg-slate-700/80'
                 }`}
             >
@@ -164,7 +166,7 @@ const Skills = () => {
                           whileInView={{ width: `${skill.level}%` }}
                           viewport={{ once: false }}
                           transition={{ duration: 1.2, delay: index * 0.05, ease: "easeOut" }}
-                          className="h-full bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 rounded-full relative"
+                          className="h-full gradient-premium rounded-full relative"
                         >
 
                         </motion.div>
@@ -187,7 +189,7 @@ const Skills = () => {
             {visibleCount < filteredSkills.length && (
               <button
                 onClick={handleLoadMore}
-                className="btn btn-primary rounded-full px-8 py-3 font-semibold shadow-lg hover:shadow-purple-400/30 transition-all active:scale-95 flex items-center gap-3"
+                className="btn btn-primary rounded-full px-8 py-3 font-semibold shadow-lg hover:shadow-blue-500/30 transition-all active:scale-95 flex items-center gap-3"
               >
                 See More Skills
                 <span>↓</span>
@@ -197,7 +199,7 @@ const Skills = () => {
             {visibleCount > 6 && (
               <button
                 onClick={() => setVisibleCount(prev => Math.max(prev - 6, 6))}
-                className="btn btn-outline border-2 border-purple-400 text-purple-400 font-semibold hover:bg-gradient-to-r hover:from-purple-400 hover:via-pink-400 hover:to-blue-400 hover:text-white hover:border-transparent rounded-full px-8 py-3 shadow-lg transition-all active:scale-95 flex items-center gap-3"
+                className="btn btn-outline border-2 border-blue-500 text-blue-500 font-semibold hover:gradient-premium hover:text-white hover:border-transparent rounded-full px-8 py-3 shadow-lg transition-all active:scale-95 flex items-center gap-3"
               >
                 Show Less
                 <span>↑</span>

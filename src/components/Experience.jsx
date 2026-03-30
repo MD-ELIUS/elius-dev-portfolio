@@ -49,7 +49,7 @@ const Experience = () => {
 
         <div className="relative">
           {/* Vertical Timeline Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/50 via-secondary/50 to-accent/50 transform md:-translate-x-1/2"></div>
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500/50 via-cyan-500/50 to-indigo-500/50 transform md:-translate-x-1/2"></div>
 
           <div className="space-y-12">
             {experiences.map((exp, index) => (
@@ -63,7 +63,7 @@ const Experience = () => {
                   }`}
               >
                 {/* Timeline Dot */}
-                <div className="absolute left-8 md:left-1/2 w-8 h-8 bg-gradient-to-r from-primary/80 to-secondary/80 rounded-full border-4 border-base-100 shadow-md transform md:-translate-x-1/2 z-10">
+                <div className="absolute left-8 md:left-1/2 w-8 h-8 gradient-premium rounded-full border-4 border-base-100 shadow-md transform md:-translate-x-1/2 z-10">
                   <motion.div
                     animate={{ scale: [1, 1.1, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
@@ -79,7 +79,7 @@ const Experience = () => {
                     className="relative bg-gradient-to-br from-base-200 to-base-300 rounded-xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 border border-slate-200 dark:border-slate-700/50 border-l-4 border-l-primary/50 hover:border-l-primary overflow-hidden group"
                   >
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-r from-purple-400/5 via-pink-400/5 to-blue-400/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                      className="absolute inset-0 bg-gradient-to-r from-blue-600/5 via-cyan-500/5 to-indigo-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       initial={false}
                     />
                     <div className="relative z-10">
@@ -88,9 +88,9 @@ const Experience = () => {
                           <motion.div
                             whileHover={{ rotate: 360, scale: 1.1 }}
                             transition={{ duration: 0.5 }}
-                            className={`p-3 rounded-xl shadow-md group-hover:shadow-lg group-hover:shadow-purple-400/20 transition-all duration-300 ${exp.type === 'education'
-                              ? 'bg-gradient-to-r from-secondary/80 to-accent/80'
-                              : 'bg-gradient-to-r from-primary/80 to-secondary/80'
+                            className={`p-3 rounded-xl shadow-md group-hover:shadow-lg group-hover:shadow-blue-500/20 transition-all duration-300 ${exp.type === 'education'
+                              ? 'gradient-premium'
+                              : 'gradient-premium'
                               } text-white`}
                           >
                             <exp.icon className="w-6 h-6" />

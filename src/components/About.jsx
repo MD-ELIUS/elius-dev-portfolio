@@ -95,7 +95,7 @@ const About = () => {
 
             <div className="relative z-10 container mx-auto px-4">
               <div className="flex items-center gap-4 mb-8">
-                <div className="w-12 h-12 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center shadow-lg">
+                <div className="w-12 h-12 gradient-premium rounded-2xl flex items-center justify-center shadow-lg">
                   <User className="text-white" size={24} />
                 </div>
                 <div>
@@ -106,10 +106,10 @@ const About = () => {
 
               <div className="space-y-4 sm:space-y-6 text-slate-600 dark:text-slate-300 leading-relaxed">
                 <p className="text-base sm:text-lg">
-                  I am a lifelong tech enthusiast, fascinated by how technology turns ideas into reality. Highly self-motivated, I continuously learn and develop my skills. Coming from a <span className="text-purple-400 font-semibold">Food Science and Technology</span> background, I successfully adapted to the field of web development.
+                  I am a lifelong tech enthusiast, fascinated by how technology turns ideas into reality. Highly self-motivated, I continuously learn and develop my skills. Coming from a <span className="text-blue-500 font-semibold">Food Science and Technology</span> background, I successfully adapted to the field of web development.
                 </p>
                 <p className="text-base sm:text-lg lg:text-xl">
-                  With <span className="text-blue-400 font-semibold">1+ years of hands-on experience</span>, I specialize in building responsive, scalable, and modern web applications using <span className="text-blue-400 font-semibold">Next.js and the MERN stack</span>. I enjoy transforming complex ideas into elegant interfaces using libraries like <span className="text-pink-400 font-semibold">Framer Motion, GSAP, and Shadcn UI</span>.
+                  Specializing in <span className="text-blue-500 font-semibold">Next.js and the MERN stack</span>, I enjoy transforming complex ideas into elegant interfaces using libraries like <span className="text-gradient font-bold">Framer Motion, GSAP, and Shadcn UI</span>.
                 </p>
                 <p className="text-base sm:text-lg">
                   Beyond coding, I'm passionate about building clean, maintainable, and efficient code that solves real-world problems. I aspire to become a versatile full-stack developer with expertise in both web and mobile applications, always eager to collaborate with innovative tech teams.
@@ -128,7 +128,7 @@ const About = () => {
             className="bg-white/50 dark:bg-slate-800/30 backdrop-blur-xl rounded-3xl p-8 border border-slate-200 dark:border-slate-700/30 shadow-xl"
           >
             <div className="flex items-center gap-4 mb-8">
-              <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-2xl flex items-center justify-center shadow-lg">
+              <div className="w-12 h-12 gradient-premium rounded-2xl flex items-center justify-center shadow-lg">
                 <Code className="text-white" size={24} />
               </div>
               <h3 className="text-2xl font-bold">Top Skills</h3>
@@ -168,7 +168,7 @@ const About = () => {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-secondary/5 rounded-full blur-3xl -ml-32 -mb-32" />
 
           <div className="relative z-10 flex flex-col items-center">
-            <div className="w-16 h-16 bg-gradient-to-r from-primary to-secondary rounded-2xl flex items-center justify-center shadow-xl mb-6">
+            <div className="w-16 h-16 gradient-premium rounded-2xl flex items-center justify-center shadow-xl mb-6">
               <Rocket className="text-white" size={32} />
             </div>
 
@@ -189,7 +189,7 @@ const About = () => {
               </button>
               <button
                 onClick={() => scrollToSection('services')}
-                className="btn btn-secondary rounded-full px-8 py-3 flex items-center gap-3 transition-all duration-300"
+                className="btn btn-primary rounded-full px-8 py-3 flex items-center gap-3 transition-all duration-300"
               >
                 <Settings size={20} /> View Services
               </button>

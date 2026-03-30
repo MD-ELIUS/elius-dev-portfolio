@@ -40,19 +40,39 @@ const Contact = () => {
       return;
     }
 
-    // Simulate form submission
-    setTimeout(() => {
-      setFormStatus({
-        type: 'success',
-        message: 'Message sent successfully! I will get back to you soon.',
-      });
-      setFormData({ name: '', email: '', subject: '', message: '' });
-      setIsSubmitting(false);
+    try {
+      const response = await fetch(
+        "https://n8n-0g84.onrender.com/webhook/contact",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      setFormStatus({
+        type: "success",
+        message: "Message sent successfully! I will get back to you soon.",
+      });
+
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (error) {
+      setFormStatus({
+        type: "error",
+        message: "Something went wrong. Please try again later.",
+      });
+    } finally {
+      setIsSubmitting(false);
       setTimeout(() => {
-        setFormStatus({ type: '', message: '' });
+        setFormStatus({ type: "", message: "" });
       }, 5000);
-    }, 1500);
+    }
   };
 
   const contactInfo = [
@@ -75,7 +95,7 @@ const Contact = () => {
       label: 'Location',
       value: 'Mirpur, Dhaka, Bangladesh',
       href: '#',
-      gradient: 'from-purple-500 to-pink-500'
+      gradient: 'from-cyan-500 to-blue-600'
     }
   ];
 
@@ -83,7 +103,7 @@ const Contact = () => {
     { icon: Github, href: 'https://github.com/MD-ELIUS', label: 'GitHub', color: 'hover:!bg-blue-600 dark:hover:!bg-blue-500 hover:!text-white' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/mdelius/', label: 'LinkedIn', color: 'hover:!bg-blue-600 dark:hover:!bg-blue-500 hover:!text-white' },
     { icon: Facebook, href: 'https://www.facebook.com/elius320', label: 'Facebook', color: 'hover:!bg-blue-600 dark:hover:!bg-blue-500 hover:!text-white' },
-    { icon: Globe, href: 'https://mdelius.dev', label: 'Portfolio', color: 'hover:!bg-blue-600 dark:hover:!bg-blue-500 hover:!text-white' },
+    { icon: Globe, href: 'https://elius-dev-portfolio.vercel.app/', label: 'Portfolio', color: 'hover:!bg-blue-600 dark:hover:!bg-blue-500 hover:!text-white' },
   ];
 
   return (
@@ -177,7 +197,7 @@ const Contact = () => {
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full py-4 rounded-xl bg-gradient-to-r from-primary via-purple-500 to-blue-500 text-white font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed group"
+                className="w-full py-4 rounded-xl gradient-premium text-white font-bold shadow-lg shadow-primary/25 hover:shadow-primary/40 hover:opacity-90 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed group"
               >
                 {isSubmitting ? (
                   <div className="w-6 h-6 border-2 border-white/30 border-t-white rounded-full animate-spin" />

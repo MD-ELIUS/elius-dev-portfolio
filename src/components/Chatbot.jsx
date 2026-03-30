@@ -5,6 +5,8 @@ import { chatbotData } from './ChatbotData';
 
 const Chatbot = () => {
     const [isOpen, setIsOpen] = useState(false);
+    const [showWelcome, setShowWelcome] = useState(true);
+    const [isHidden, setIsHidden] = useState(false);
     const [messages, setMessages] = useState([
         {
             id: 1,
@@ -23,6 +25,27 @@ const Chatbot = () => {
     useEffect(() => {
         scrollToBottom();
     }, [messages, isTyping]);
+
+    useEffect(() => {
+        // Show welcome message periodically every 10 seconds
+        if (isOpen) {
+            setShowWelcome(false);
+            return;
+        }
+
+        const showTimer = setTimeout(() => setShowWelcome(true), 100);
+        const hideTimer = setTimeout(() => setShowWelcome(false), 4000);
+        const repeatTimer = setInterval(() => {
+            setShowWelcome(true);
+            setTimeout(() => setShowWelcome(false), 4000);
+        }, 10000);
+
+        return () => {
+            clearTimeout(showTimer);
+            clearTimeout(hideTimer);
+            clearInterval(repeatTimer);
+        };
+    }, [isOpen]);
 
     const handleSendMessage = async (text) => {
         if (!text.trim()) return;
@@ -90,19 +113,54 @@ const Chatbot = () => {
         }
     };
 
+    if (isHidden) return null;
+
     return (
         <>
             {/* Floating Toggle Button */}
-            <motion.button
-                initial={{ scale: 0, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={() => setIsOpen(!isOpen)}
-                className="fixed bottom-6 right-6 z-50 w-14 h-14 bg-gradient-to-r from-primary to-blue-500 rounded-full flex items-center justify-center shadow-lg hover:shadow-primary/40 text-white transition-all duration-300"
-            >
-                {isOpen ? <X size={24} /> : <MessageCircle size={28} />}
-            </motion.button>
+            <div className="fixed bottom-6 right-6 z-50">
+                {/* Welcome Tooltip */}
+                <AnimatePresence>
+                    {showWelcome && !isOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, x: 20, scale: 0.9 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            exit={{ opacity: 0, x: 20, scale: 0.9 }}
+                            className="absolute bottom-full right-0 mb-3 bg-white dark:bg-slate-800 text-slate-800 dark:text-white px-4 py-2 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 whitespace-nowrap"
+                        >
+                            <div className="flex items-center gap-2">
+                                <Sparkles size={16} className="text-blue-500" />
+                                <span className="text-sm font-medium">Ask me anything!</span>
+                            </div>
+                            <div className="absolute bottom-0 right-6 transform translate-y-1/2 rotate-45 w-2 h-2 bg-white dark:bg-slate-800 border-r border-b border-slate-200 dark:border-slate-700"></div>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                {/* Close Button */}
+                <motion.button
+                    onClick={() => setIsHidden(true)}
+                    className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-br from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white rounded-full flex items-center justify-center shadow-md hover:shadow-lg transition-all z-10 border border-white dark:border-slate-900"
+                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    whileTap={{ scale: 0.9 }}
+                    title="Close chatbot"
+                >
+                    <X size={14} strokeWidth={2.5} />
+                </motion.button>
+
+                {/* Main Toggle Button */}
+                <motion.button
+                    onClick={() => {
+                        setIsOpen(!isOpen);
+                        setShowWelcome(false);
+                    }}
+                    className="w-14 h-14 gradient-premium rounded-full flex items-center justify-center shadow-lg hover:shadow-primary/40 text-white transition-all duration-300"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                >
+                    {isOpen ? <X size={24} /> : <MessageCircle size={28} />}
+                </motion.button>
+            </div>
 
             {/* Chat Window */}
             <AnimatePresence>
@@ -115,8 +173,8 @@ const Chatbot = () => {
                         className="fixed bottom-24 right-6 z-50 w-[90vw] md:w-[380px] h-[500px] max-h-[80vh] bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl border border-slate-200 dark:border-slate-700/50 rounded-2xl shadow-2xl flex flex-col overflow-hidden"
                     >
                         {/* Header */}
-                        <div className="p-4 bg-gradient-to-r from-primary/10 to-blue-500/10 border-b border-slate-200 dark:border-slate-700/50 flex items-center gap-3">
-                            <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-blue-500 flex items-center justify-center text-white shadow-sm">
+                        <div className="p-4 bg-gradient-to-r from-primary/10 to-blue-600/10 border-b border-slate-200 dark:border-slate-700/50 flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-full gradient-premium flex items-center justify-center text-white shadow-sm">
                                 <Bot size={20} />
                             </div>
                             <div>
@@ -138,7 +196,7 @@ const Chatbot = () => {
                                     <div
                                         className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${msg.type === 'user'
                                             ? 'bg-slate-200 dark:bg-slate-700 text-slate-600 dark:text-slate-300'
-                                            : 'bg-gradient-to-br from-primary to-blue-500 text-white'
+                                            : 'gradient-premium text-white'
                                             }`}
                                     >
                                         {msg.type === 'user' ? <User size={16} /> : <Bot size={16} />}
@@ -156,7 +214,7 @@ const Chatbot = () => {
 
                             {isTyping && (
                                 <div className="flex gap-3">
-                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-blue-500 flex items-center justify-center text-white flex-shrink-0">
+                                    <div className="w-8 h-8 rounded-full gradient-premium flex items-center justify-center text-white flex-shrink-0">
                                         <Bot size={16} />
                                     </div>
                                     <div className="bg-slate-100 dark:bg-slate-800 p-3 rounded-2xl rounded-bl-none border border-slate-200 dark:border-slate-700 flex items-center gap-1">

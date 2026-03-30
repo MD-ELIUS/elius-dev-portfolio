@@ -2,6 +2,10 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ExternalLink, Github, Eye, X, Laptop, Calendar, Share2, ArrowRight, Check } from 'lucide-react';
 import SectionTitle from './SectionTitle';
+import scholarHubImage from "../assets/scholarHub.png"
+import homeNestImage from "../assets/homeNest.png"
+import megaMartImage from "../assets/megaMart.png"
+import zapShiftImage from "../assets/zapShift.png"
 
 const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
@@ -179,7 +183,7 @@ const ProjectCard = ({ project, onOpenModal }) => {
         </div>
 
         <div className="absolute top-4 right-4 z-10">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-white bg-gradient-to-r from-blue-500 to-cyan-500 shadow-lg backdrop-blur-sm">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold text-white gradient-premium shadow-lg backdrop-blur-sm">
             <Laptop size={12} className="w-3 h-3" /> {project.platform === 'MERN Stack' || project.platform === 'Full Stack' ? 'Web App' : project.platform}
           </span>
         </div>
@@ -291,8 +295,45 @@ const Projects = () => {
       year: 'Dec 2025',
       platform: 'MERN Stack',
       isLive: true,
-      image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=800&h=600&fit=crop',
+      image: scholarHubImage,
     },
+    {
+  title: 'ZapShift – Smart Logistics & Parcel Management Platform',
+  description: 'ZapShift is a high-performance full-stack MERN parcel management platform that connects users, delivery riders, and administrators for fast, secure, and reliable parcel delivery.',
+  highlights: [
+    'Fully responsive dashboards for Users, Riders & Admins',
+    'Secure private routes with JWT & Firebase authentication',
+    'Real-time parcel status & delivery tracking',
+    'Admin analytics with charts & platform insights',
+    'Clean, professional & recruiter-friendly UI'
+  ],
+  features: [
+    'Secure Authentication (Firebase Email/Password & Google Login)',
+    'Parcel Booking with automatic delivery price calculation',
+    'Role-Based Dashboard (User, Rider, Admin)',
+    'Real-Time Parcel Tracking & status updates',
+    'Secure Payment System (Stripe Integration)',
+    'Rider assignment & delivery management system',
+    'Responsive UI with Tailwind CSS & DaisyUI',
+    'Server-side search, filter & pagination'
+  ],
+  techStack: [
+    'React.js', 'React Router', 'Tailwind CSS', 'DaisyUI',
+    'Firebase Authentication', 'TanStack Query', 'Axios',
+    'Node.js', 'Express.js', 'MongoDB (Atlas)', 'JWT',
+    'Stripe Payment API', 'Lottie', 'Framer Motion'
+  ],
+  skills: [
+    'React.js', 'Express.js', 'Node.js', 'MongoDB',
+    'JWT', 'Firebase', 'Stripe'
+  ],
+  liveLink: 'https://zap-shift-client-gamma.vercel.app/',
+  githubLink: 'https://github.com/MD-ELIUS/zap-shift-client',
+  year: 'Dec 2025',
+  platform: 'MERN Stack',
+  isLive: true,
+  image: zapShiftImage,
+},
     {
       title: 'HomeNest – Real Estate Listing Platform',
       description: 'HomeNest is a modern full-stack real estate listing platform that allows users to explore, search, review, and manage properties seamlessly.',
@@ -322,7 +363,7 @@ const Projects = () => {
       year: 'Nov 2025',
       platform: 'Full Stack',
       isLive: true,
-      image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&h=600&fit=crop',
+      image: homeNestImage,
     },
     {
       title: 'MegaMart – Furniture E-Commerce Platform',
@@ -355,7 +396,7 @@ const Projects = () => {
       year: 'Nov 2025',
       platform: 'Next.js App',
       isLive: true,
-      image: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=800&h=600&fit=crop',
+      image: megaMartImage,
     },
   ];
 

@@ -55,7 +55,7 @@ const Hero = ({ theme }) => {
     <section id="home" className="py-16 relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] animated-grid-pattern"></div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-purple-500/5 to-transparent blur-3xl"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-gradient-radial from-blue-500/5 to-transparent blur-3xl"></div>
       </div>
 
       <div className="container mx-auto px-4 relative z-10">
@@ -69,7 +69,7 @@ const Hero = ({ theme }) => {
           >
             <HeroTitle greeting="Assalamualaikum, I'm" name="a Developer" />
             <h1 className="text-3xl sm:text-5xl font-bold mt-4 text-transparent 
-                 bg-clip-text bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 uppercase">
+                 bg-clip-text gradient-premium uppercase">
               MD. ELIUS
             </h1>
 
@@ -92,10 +92,10 @@ const Hero = ({ theme }) => {
               className="text-lg md:text-xl text-base-content/70 max-w-2xl mb-8 leading-relaxed font-body"
             >
               Building modern, responsive, and efficient web applications using{' '}
-              <span className="font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">React</span>,{' '}
-              <span className="font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Node.js</span>,{' '}
-              <span className="font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">Express</span>, and{' '}
-              <span className="font-bold bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent">MongoDB</span>,
+              <span className="font-bold text-gradient">React</span>,{' '}
+              <span className="font-bold text-gradient">Node.js</span>,{' '}
+              <span className="font-bold text-gradient">Express</span>, and{' '}
+              <span className="font-bold text-gradient">MongoDB</span>,
               delivering clean and scalable solutions for real-world problems.
             </motion.p>
 
@@ -119,7 +119,14 @@ const Hero = ({ theme }) => {
 
               {/* Image Container with Enhanced Border */}
               {/* Image Container with Enhanced Border */}
-              <div className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-2xl hover:shadow-purple-400/30 transition-all duration-300 group p-1 bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 animate-pulse-slower">
+              <motion.div
+                animate={{ y: [0, -12, 0] }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="relative w-64 h-64 md:w-80 md:h-80 rounded-2xl overflow-hidden shadow-2xl hover:shadow-cyan-400/30 transition-all duration-300 group p-1 gradient-premium">
                 <div className="relative w-full h-full rounded-2xl overflow-hidden bg-base-100">
                   <img
                     src={heroImg}
@@ -129,9 +136,9 @@ const Hero = ({ theme }) => {
                       e.target.src = 'https://ui-avatars.com/api/?name=Developer&size=400&background=c084fc&color=fff&bold=true';
                     }}
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-purple-400/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-600/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </div>
-              </div>
+              </motion.div>
 
               {/* Floating Decorative Elements */}
 
@@ -143,32 +150,32 @@ const Hero = ({ theme }) => {
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 max-w-4xl mx-auto mt-12 sm:mt-16">
-          <div className="group relative p-px rounded-2xl bg-gradient-to-r from-blue-400 to-purple-400 animate-pulse-slower transition-all duration-300 hover:scale-105 shadow-lg">
+          <div className="group relative p-px rounded-2xl gradient-premium transition-all duration-300 hover:scale-105 shadow-lg">
             <div className="text-center p-4 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm h-full flex flex-col items-center justify-center">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent mb-2">5+</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent mb-2">5+</div>
               <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 uppercase tracking-wider font-medium">Projects</div>
             </div>
           </div>
-          <div className="group relative p-px rounded-2xl bg-gradient-to-r from-purple-400 to-pink-400 animate-pulse-slower transition-all duration-300 hover:scale-105 shadow-lg">
+          <div className="group relative p-px rounded-2xl gradient-premium transition-all duration-300 hover:scale-105 shadow-lg">
             <div className="text-center p-4 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm h-full flex flex-col items-center justify-center">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent mb-2">2+</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-500 to-indigo-600 bg-clip-text text-transparent mb-2">2+</div>
               <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 uppercase tracking-wider font-medium">Clients</div>
             </div>
           </div>
-          <div className="group relative p-px rounded-2xl bg-gradient-to-r from-indigo-400 to-cyan-400 animate-pulse-slower transition-all duration-300 hover:scale-105 shadow-lg">
+          <div className="group relative p-px rounded-2xl gradient-premium transition-all duration-300 hover:scale-105 shadow-lg">
             <div className="text-center p-4 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm h-full flex flex-col items-center justify-center">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-cyan-400 bg-clip-text text-transparent mb-2">1+</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-500 to-blue-500 bg-clip-text text-transparent mb-2">1+</div>
               <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 uppercase tracking-wider font-medium">Years</div>
             </div>
           </div>
-          <div className="group relative p-px rounded-2xl bg-gradient-to-r from-green-400 to-emerald-400 animate-pulse-slower transition-all duration-300 hover:scale-105 shadow-lg">
+          <div className="group relative p-px rounded-2xl gradient-premium transition-all duration-300 hover:scale-105 shadow-lg">
             <div className="text-center p-4 rounded-2xl bg-white/90 dark:bg-slate-900/90 backdrop-blur-sm h-full flex flex-col items-center justify-center">
-              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent mb-2">10+</div>
+              <div className="text-3xl sm:text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-transparent mb-2">10+</div>
               <div className="text-xs sm:text-sm text-slate-600 dark:text-slate-400 uppercase tracking-wider font-medium">Technologies</div>
             </div>
           </div>
         </div>
-      </div>
+      </div >
     </section >
   );
 };
