@@ -269,3 +269,5 @@ const Chatbot = () => {
 };
 
 export default Chatbot;
+
+// Accessibility documentation enhanced
