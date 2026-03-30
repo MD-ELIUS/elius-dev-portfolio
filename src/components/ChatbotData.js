@@ -67,3 +67,5 @@ export const chatbotData = {
             answer: "You can reach me through my Portfolio Website: https://mdelius.dev, LinkedIn: https://www.linkedin.com/in/mdelius/, or GitHub: https://github.com/MD-ELIUS. Feel free to connect with me on any of these platforms!"        }
     ]
 };
+
+// Accessibility documentation enhanced
