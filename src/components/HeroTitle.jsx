@@ -1,3 +1,4 @@
+/** component: HeroTitle.jsx documentation added **/
 import React from "react";
 import { Hand } from "lucide-react";
 
