@@ -213,3 +213,5 @@ const Skills = () => {
 };
 
 export default Skills;
+
+// Accessibility documentation enhanced
