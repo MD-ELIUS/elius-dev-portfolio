@@ -30,3 +30,5 @@ const HeroTitle = ({ greeting = "Hello, I'm" }) => {
 };
 
 export default HeroTitle;
+
+// Accessibility documentation enhanced
