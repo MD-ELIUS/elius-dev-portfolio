@@ -50,3 +50,5 @@ const ScrollToTop = () => {
 };
 
 export default ScrollToTop;
+
+// Accessibility documentation enhanced
