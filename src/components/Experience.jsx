@@ -1,3 +1,4 @@
+/** component: Experience.jsx documentation added **/
 import { motion } from 'framer-motion';
 import { GraduationCap, Code, BookOpen } from 'lucide-react';
 import { SiReact, SiJavascript, SiNodedotjs, SiHtml5, SiCss3, SiMongodb } from 'react-icons/si';
