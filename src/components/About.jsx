@@ -37,7 +37,7 @@ const About = () => {
   };
 
   return (
-    <section id="about" className="relative py-16 overflow-hidden">
+    <section id="about" aria-label="About Me" className="relative py-16 overflow-hidden">
       {/* Background Decor */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 opacity-10 animated-grid-pattern"></div>
