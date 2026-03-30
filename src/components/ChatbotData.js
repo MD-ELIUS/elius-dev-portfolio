@@ -1,3 +1,4 @@
+/** component: ChatbotData.js documentation added **/
 export const chatbotData = {
     name: "MD. Elius",
     greeting: "Assalamualaikum! I’m MD. Elius.",
