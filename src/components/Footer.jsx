@@ -1,3 +1,4 @@
+/** component: Footer.jsx documentation added **/
 import { motion } from 'framer-motion';
 import { Heart } from 'lucide-react';
 
