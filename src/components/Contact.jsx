@@ -1,3 +1,4 @@
+/** component: Contact.jsx documentation added **/
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Github, Linkedin, Send, MapPin, Globe, Facebook } from 'lucide-react';
