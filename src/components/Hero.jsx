@@ -1,3 +1,4 @@
+/** component: Hero.jsx documentation added **/
 import { motion } from 'framer-motion';
 import { Download, ExternalLink, Mail } from 'lucide-react';
 import HeroTitle from './HeroTitle';
