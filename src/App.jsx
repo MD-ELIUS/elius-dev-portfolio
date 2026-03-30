@@ -11,9 +11,13 @@ import Contact from './components/Contact';
 import ScrollToTop from './components/ScrollToTop';
 import Chatbot from './components/Chatbot';
 
-import { motion } from 'framer-motion';
+import LoadingScreen from './components/LoadingScreen';
+
+import { motion, AnimatePresence } from 'framer-motion';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+
   const [theme, setTheme] = useState(() => {
     const savedTheme = localStorage.getItem('theme');
     if (savedTheme) return savedTheme;
@@ -21,6 +25,14 @@ function App() {
   });
 
   const [activeSection, setActiveSection] = useState('home');
+
+  useEffect(() => {
+    // Simulate loading time
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
 
   useEffect(() => {
     // Apply Tailwind dark mode class
@@ -61,28 +73,35 @@ function App() {
 
   return (
     <Router>
-      <div className="min-h-screen relative overflow-hidden bg-base-100 transition-colors duration-500">
-        <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
+      <div className="min-h-screen relative bg-base-100 transition-colors duration-500">
+        <div className="fixed inset-0 pointer-events-none z-0">
           {/* Grid Pattern Overlay */}
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] opacity-20"></div>
         </div>
 
-
         <div className="relative z-10">
-          <Navbar theme={theme} toggleTheme={toggleTheme} activeSection={activeSection} />
-          <main>
-            <Hero theme={theme} />
-            <About />
-            <Skills />
-            <Projects />
-            <Services />
+          <AnimatePresence mode="wait">
+            {loading ? (
+              <LoadingScreen key="loading" />
+            ) : (
+              <>
+                <Navbar theme={theme} toggleTheme={toggleTheme} activeSection={activeSection} />
+                <main>
+                  <Hero theme={theme} />
+                  <About />
+                  <Skills />
+                  <Projects />
+                  <Services />
 
-            <Contact />
-          </main>
-          <Footer />
-          <Footer />
-          <ScrollToTop />
-          <Chatbot />
+                  <Contact />
+                </main>
+                <Footer />
+
+                <ScrollToTop />
+                <Chatbot />
+              </>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </Router>
