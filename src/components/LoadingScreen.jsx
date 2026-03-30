@@ -1,3 +1,4 @@
+/** component: LoadingScreen.jsx documentation added **/
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
