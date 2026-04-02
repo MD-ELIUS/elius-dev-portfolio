@@ -7,9 +7,18 @@ import scholarHubImage from "../assets/scholarHub.png"
 import homeNestImage from "../assets/homeNest.png"
 import megaMartImage from "../assets/megaMart.png"
 import zapShiftImage from "../assets/zapShift.png"
+import contactAutoReplyImage from "../assets/contactAutoReplyImage.png"
 
 const ProjectModal = ({ project, onClose }) => {
   if (!project) return null;
+
+  const handleLiveClick = (e, link) => {
+  if (link.startsWith('#')) {
+    e.preventDefault();
+    const section = document.querySelector(link);
+    section?.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 
   return (
     <motion.div
@@ -110,6 +119,7 @@ const ProjectModal = ({ project, onClose }) => {
             <div className="mt-auto flex flex-wrap gap-3 pt-5 border-t border-slate-100 dark:border-slate-800">
               <a
                 href={project.liveLink}
+                onClick={(e) => handleLiveClick(e, project.liveLink)}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 inline-flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 text-white rounded-xl font-bold uppercase tracking-wider text-xs hover:bg-blue-600 transition-all shadow-md shadow-blue-500/20 active:scale-95"
@@ -200,6 +210,13 @@ const ProjectCard = ({ project, onOpenModal }) => {
           </button>
           <a
             href={project.liveLink}
+            onClick={(e) => {
+    if (project.liveLink.startsWith('#')) {
+      e.preventDefault();
+      const section = document.querySelector(project.liveLink);
+      section?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }}
             target="_blank"
             rel="noopener noreferrer"
             className="group/btn inline-flex items-center gap-2 px-5 py-2.5 bg-white text-slate-900 rounded-full text-sm font-bold shadow-lg hover:bg-slate-50 hover:scale-105 transition-all"
@@ -399,6 +416,44 @@ const Projects = () => {
       isLive: true,
       image: megaMartImage,
     },
+    {
+  title: 'Smart Contact Auto Reply System (AI Powered)',
+  description: 'An intelligent contact form automation system built with n8n that instantly notifies the website owner and generates AI-powered replies to user inquiries using Grok AI.',
+  highlights: [
+    'Automated email notification to website owner with custom template',
+    'AI-generated contextual reply sent instantly to users',
+    'Custom-trained Grok AI prompt with website-specific knowledge',
+    'Seamless workflow automation using n8n',
+    'Professional email formatting for both admin & user communication'
+  ],
+  features: [
+    'Contact Form Integration with automated workflow trigger',
+    'Owner Notification System with beautiful HTML email template',
+    'AI Response Generation via Grok API (HTTP Request)',
+    'Dynamic Personalized Email Replies to users',
+    'Predefined JSON-based context for accurate AI responses',
+    'Error handling and smooth automation flow in n8n'
+  ],
+  techStack: [
+    'n8n Automation', 'Grok AI API', 'HTTP Request',
+    'Node.js (optional backend)', 'HTML Email Templates',
+    'JSON Data Structuring'
+  ],
+  skills: [
+    'Automation Workflow Design',
+    'API Integration',
+    'AI Prompt Engineering',
+    'Email Template Design',
+    'n8n',
+    'REST API Handling'
+  ],
+  liveLink: '#contact',
+  githubLink: 'https://github.com/MD-ELIUS/elius-dev-portfolio',
+  year: '2026',
+  platform: 'Automation + AI Integration',
+  isLive: true,
+  image: contactAutoReplyImage,
+}
   ];
 
   return (
